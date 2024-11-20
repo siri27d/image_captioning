@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multilingual Assistive Model</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <h1>Image Captioning, Translation, and Audio Narration</h1>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <button type="submit">Upload and Process</button>
+    </form>
+    {% if caption %}
+        <h2>Generated Caption</h2>
+        <p>{{ caption }}</p>
+        <h2>Translations</h2>
+        <ul>
+            {% for lang, translation in translations.items() %}
+                <li>{{ lang }}: {{ translation }}</li>
+            {% endfor %}
+        </ul>
+        <h2>Audio Files</h2>
+        <ul>
+            {% for file in audio_files %}
+                <li><a href="/static/outputs/{{ file }}" download>{{ file }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
